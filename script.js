@@ -9,8 +9,13 @@ function submitRollCall() {
     return;
   }
 
-  const name = document.getElementById('name').value;
-  const id = document.getElementById('id').value;
+  const name = document.getElementById('name').value.trim();
+  const id = document.getElementById('id').value.trim();
+
+  if (!name || !id) {
+    document.getElementById('checkInStatus').innerText = "Name and ID are required!";
+    return;
+  }
 
   if ("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -21,10 +26,10 @@ function submitRollCall() {
                            (longitude > 130.9000 && longitude < 131.2000);
 
       if (withinBounds) {
-        document.getElementById('locationStatus').innerText = "Location verified";
+        document.getElementById('locationStatus').innerText = "Location verified ✅";
         saveRollCallData(name, id, latitude, longitude);
       } else {
-        document.getElementById('locationStatus').innerText = "Outside allowed location";
+        document.getElementById('locationStatus').innerText = "Outside allowed location ❌";
       }
     });
   } else {
@@ -35,6 +40,18 @@ function submitRollCall() {
 function saveRollCallData(name, id, latitude, longitude) {
   const timestamp = new Date().toLocaleString();
   rollCallData.push({ name, id, latitude, longitude, timestamp });
+
+  const tableRow = `
+    <tr>
+      <td>${name}</td>
+      <td>${id}</td>
+      <td>${latitude.toFixed(4)}</td>
+      <td>${longitude.toFixed(4)}</td>
+      <td>${timestamp}</td>
+    </tr>
+  `;
+  document.getElementById('submissionTable').insertAdjacentHTML('beforeend', tableRow);
+
   document.getElementById('checkInStatus').innerText = "Check-In Successful!";
 }
 
@@ -69,4 +86,12 @@ function promptFileDownload() {
   document.body.removeChild(link);
   URL.revokeObjectURL(url);
   document.getElementById('timer').innerText = "Download complete!";
+}
+
+function openHelp() {
+  document.getElementById('helpModal').style.display = "block";
+}
+
+function closeHelp() {
+  document.getElementById('helpModal').style.display = "none";
 }
