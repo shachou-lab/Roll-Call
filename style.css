@@ -1,75 +1,111 @@
 html, body {
-  height: 100%;
-  width: 100%;
   font-family: Arial, sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
   margin: 0;
-  padding: 10px;
+  padding: 0;
   background-color: #f4f4f9;
+  color: #333;
+}
+
+header {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 0;
+  text-align: center;
 }
 
 h1 {
-  font-size: 1.5em;
-  color: #333;
+  margin: 0;
 }
 
 #emergencyLinks {
   display: flex;
   justify-content: space-around;
-  width: 100%;
-  max-width: 300px;
-  margin-bottom: 15px;
+  margin: 15px auto;
 }
 
 #emergencyLinks a {
   text-decoration: none;
-  color: #007bff;
   font-weight: bold;
-  padding: 5px 10px;
-  border: 1px solid #007bff;
+  padding: 10px 15px;
+  border: 2px solid #007bff;
   border-radius: 5px;
-  font-size: 0.9em;
+  color: #007bff;
 }
 
-#rollCallForm {
+#emergencyLinks a:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+main {
+  text-align: center;
+  padding: 20px;
+}
+
+form {
+  margin: 20px auto;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  width: 100%;
-  max-width: 300px;
-  margin-bottom: 15px;
+  gap: 10px;
 }
 
-label, input, button {
-  margin: 5px 0;
-}
-
-input {
-  padding: 8px;
+input, button {
+  padding: 10px;
   font-size: 1em;
 }
 
 button {
-  padding: 10px;
-  font-size: 1em;
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 5px;
+  cursor: pointer;
 }
 
-#timer {
-  font-size: 1.1em;
-  color: #333;
-  margin-top: 15px;
+button:hover {
+  background-color: #0056b3;
 }
 
-p {
-  font-size: 1em;
-  color: #333;
-  margin: 5px 0;
+table {
+  width: 90%;
+  margin: 20px auto;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #f1f1f1;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  margin: 15% auto;
+  width: 50%;
+  border-radius: 10px;
+}
+
+.close {
+  float: right;
+  font-size: 1.5em;
+  cursor: pointer;
 }
