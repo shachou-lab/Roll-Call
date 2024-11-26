@@ -3,31 +3,66 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Roll Call Check-In</title>
+  <title>Advanced Roll Call Check-In</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Roll Call Check-In</h1>
+  <header>
+    <h1>Advanced Roll Call Check-In</h1>
+  </header>
 
   <div id="emergencyLinks">
-    <a href="#" onclick="alert('Marked as Absent')">Absent</a>
-    <a href="tel:911">911</a>
-    <a href="#">Help</a>
+    <a href="#" onclick="alert('Marked as Absent')">Mark Absent</a>
+    <a href="tel:911">Emergency (911)</a>
+    <a href="#" onclick="openHelp()">Help</a>
   </div>
 
-  <form id="rollCallForm">
-    <label for="name">Name:</label>
-    <input type="text" id="name" required>
-    <label for="id">ID:</label>
-    <input type="text" id="id" required>
-    <button type="button" onclick="submitRollCall()">Check In</button>
-  </form>
+  <main>
+    <form id="rollCallForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" placeholder="Enter your name" required>
+      <label for="id">ID:</label>
+      <input type="text" id="id" placeholder="Enter your ID" required>
+      <button type="button" onclick="submitRollCall()">Check In</button>
+    </form>
 
-  <p id="locationStatus"></p>
-  <p id="checkInStatus"></p>
-  <p id="timer"></p> <!-- Countdown timer display -->
+    <div id="statusContainer">
+      <p id="locationStatus"></p>
+      <p id="checkInStatus"></p>
+      <p id="timer"></p>
+    </div>
 
-  <button onclick="startCountdown()">Start Roll Call</button>
+    <button id="startRollCall" onclick="startCountdown()">Start Roll Call</button>
+  </main>
+
+  <section id="dataDisplay">
+    <h2>Roll Call Submissions</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>ID</th>
+          <th>Latitude</th>
+          <th>Longitude</th>
+          <th>Timestamp</th>
+        </tr>
+      </thead>
+      <tbody id="submissionTable"></tbody>
+    </table>
+  </section>
+
+  <footer>
+    <p>Created by P社長 - Follow on <a href="https://www.instagram.com/p_shachou" target="_blank">Instagram</a></p>
+  </footer>
+
+  <!-- Modal for Help -->
+  <div id="helpModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeHelp()">&times;</span>
+      <h3>Help Information</h3>
+      <p>If you encounter issues, ensure your location services are enabled and your ID is correct.</p>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
